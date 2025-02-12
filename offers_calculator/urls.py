@@ -24,4 +24,5 @@ urlpatterns = [
     path('products/', include('products.urls')),  # Routes for products app
     path('offers/', include('offers.urls')),      # Routes for offers app
     path('', lambda request: redirect('offer_list'), name='home'),  # Redirect root to offers_list
+    path('customers/',include("customers.urls")),
 ]
