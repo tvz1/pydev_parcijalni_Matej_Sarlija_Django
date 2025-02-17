@@ -6,6 +6,7 @@ from products.models import Product
 from django.contrib.auth.models import User
 from django.views.decorators.http import require_http_methods
 from decimal import Decimal
+from customers.models import Customer
 
 
 @login_required
@@ -89,7 +90,7 @@ def offer_create(request):
         tax = sub_total * Decimal('0.2')  # Assuming a fixed 20% tax rate
         total = sub_total + tax
 
-        customer = get_object_or_404(User, id=customer_id)
+        customer = get_object_or_404(Customer, id=customer_id)
         offer = Offer.objects.create(customer=customer, date=date, sub_total=sub_total, tax=tax, total=total)
 
         for product in products:
@@ -98,7 +99,7 @@ def offer_create(request):
         return redirect('offer_list')
 
     # Render the create form template
-    customers = User.objects.all()
+    customers = Customer.objects.all()
     products = Product.objects.all()
     return render(request,
                   'offers/offer_create_form.html',
@@ -129,7 +130,7 @@ def offer_edit(request, pk):
         total = sub_total + tax
 
         # Update offer details
-        offer.customer = get_object_or_404(User, id=customer_id)
+        offer.customer = get_object_or_404(Customer, id=customer_id)
         offer.date = date
         offer.sub_total = sub_total
         offer.tax = tax
@@ -144,7 +145,7 @@ def offer_edit(request, pk):
         return redirect('offer_detail', pk=offer.id)
 
     # Render the edit form template
-    customers = User.objects.all()
+    customers = Customer.objects.all()
     return render(
         request,
         'offers/offer_edit_form.html',

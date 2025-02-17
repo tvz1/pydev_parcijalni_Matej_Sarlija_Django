@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from products.models import Product
+from customers.models import Customer
 
 
 class Offer(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)  # ForeignKey to Django's built-in User model
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)  # ForeignKey to Django's built-in User model
     date = models.DateField()  # Date of the offer
     sub_total = models.DecimalField(max_digits=10, decimal_places=2)  # Subtotal amount
     tax = models.DecimalField(max_digits=10, decimal_places=2)  # Tax amount
