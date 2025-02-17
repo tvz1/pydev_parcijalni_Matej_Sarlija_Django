@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Create Customer{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Page Header -->
+    <div class="row my-4 align-items-center">
+        <div class="col-md-6">
+            <h2 class="mb-0">Create a New Customer</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="{% url 'customer_list' %}" class="btn btn-secondary">Back to Customer</a>
+        </div>
+    </div>
+
+    <!-- Product Form -->
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Customer Name</label>
+                            <input type="text" name="name" id="name" class="form-control" required>
+                        </div>
+
+                        <!-- Vat_id -->
+                        <div class="mb-3">
+                            <label for="vat_id" class="form-label">Customer Vat_id</label>
+                            <input type="number" name="vat_id" id="vat_id" class="form-control" required>
+                        </div>
+
+                        <!-- Street -->
+                        <div class="mb-3">
+                            <label for="street" class="form-label">Customer Street</label>
+                            <input type="text" name="street" id="street" class="form-control" required>
+                        </div>
+
+                        <!-- City -->
+                        <div class="mb-3">
+                            <label for="city" class="form-label">Customer City</label>
+                            <input type="text" name="city" id="city" class="form-control" required>
+                        </div>
+
+                        <!-- Country -->
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Customer Country</label>
+                            <input type="text" name="country" id="country" class="form-control" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary">Create Customer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
